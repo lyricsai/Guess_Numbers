@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numbers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <header>
+                <div class="header__logo"><img src="./logo.png" alt="logo" class="logo"></div>
+                <button id="show">Show numbers</button>
+                <span id="randomNumber"></span>
+            </header>
+            <main>
+                <p id="hint">Guess the right numbers! <br> Choose 4 numbers from 0 to 9, the first one should NOT be a 0
+                </p>
+                <form class="game">
+                    <label for="numbers">Enter numbers: </label>
+                    <br>
+                    <input type="text" pattern="\d{4}" id="numbers">
+                </form>
+                </section>
+                <section id="myModal" class="modal">
+                    <div class="modal__content">
+                        <span class="close">&times;</span>
+                        <p id="result"></p>
+                        <input type="text" name="" id="userName">
+                    </div>
+                </section>
+                <section class="modal__2">
+                    <div class="modal__content">
+                        <h3>Top 10</h3>
+                        <span class="close">&times;</span>
+                        <ul id="history"></ul>
+                    </div>
+                </section>
+                <section>
+                    <p id="output"></p>
+                </section>
+            </main>
+            <footer>
+                <button id="execute">Try</button>
+                <button id="show__history">History</button>
+            </footer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
