@@ -14,16 +14,31 @@ function start() {
     const showHistory = document.getElementById("show__history")
     const output = document.getElementById("output")
 
-    const generateNumbers = () => {
+    const generateNumbers = (min, max) => {
 
-        let u = ~~(Math.random() * (9 - 1)) + 1
-        let x = Math.round(Math.random() * 9)
-        let y = Math.round(Math.random() * 9)
-        let z = Math.round(Math.random() * 9)
-        return [u, x, y, z]
+        let totalNumbers = max - min + 1
+        let tempRandomNumber
+        const arrayTotalNumbers = []
+        const arrayRandomNumbers = []
+
+        while (totalNumbers--) {
+            arrayTotalNumbers.push(totalNumbers + min)
+        }
+        while (arrayTotalNumbers.length) {
+            tempRandomNumber = Math.round(Math.random() * (arrayTotalNumbers.length - 1))
+            arrayRandomNumbers.push(arrayTotalNumbers[tempRandomNumber])
+            arrayTotalNumbers.splice(tempRandomNumber, 1)
+        }
+        arrayRandomNumbers.length = 4
+
+        if (arrayRandomNumbers[0] === 0) {
+            arrayRandomNumbers[0] = arrayRandomNumbers[3]
+            arrayRandomNumbers[3] = 0
+        }
+        return arrayRandomNumbers
     }
 
-    let generatedNumbers = generateNumbers()
+    let generatedNumbers = generateNumbers(0, 9)
     let sheep = 0
     let ram = 0
     let checks = 0
@@ -44,16 +59,15 @@ function start() {
         if (numbers.length !== 4 || +numbers[0] === 0) { return hint.style.color = "red" }
 
         numbers = numbers.map(e => +e)
-
         for (let i = 0; i < generatedNumbers.length; i++) {
             if (generatedNumbers[i] === numbers[i]) {
                 ram++
             }
         }
         let arr2 = generatedNumbers.filter(e => !~numbers.indexOf(e))
-        sheep = 4 - arr2.length
+        sheep = 4 - arr2.length - ram
 
-        output.innerText = `sheep: ${sheep} and rams: ${ram}`
+        output.innerHTML = `FULL GUESS: ${ram} <br><br> and NOT IN A RIGHT PLACE: ${sheep}`
 
         if (ram === 4) {
             result.innerText = `Awesome! Your guess was right on ${checks} time. Type in your name, and you'll stay in history!`
@@ -72,7 +86,9 @@ function start() {
                     document.querySelector('#userName').value = ''
                     modal.style.display = "none"
                     checks = 0
-                    generatedNumbers = generateNumbers()
+                    sheep = 0
+                    ram = 0
+                    generatedNumbers = generateNumbers(0, 9)
                 }
             })
             document.querySelector('#numbers').value = ''
