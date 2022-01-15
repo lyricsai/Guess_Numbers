@@ -27,7 +27,7 @@ body {
     align-items: center;
     min-width: 280px;
     max-width: 500px;
-    min-height: 600px;
+    min-height: 400px;
     height: 100vh;
     margin: 0 auto;
     padding: 10px;
@@ -51,7 +51,6 @@ main {
 }
 footer {
     width: 100%;
-    padding: 0 0 2rem 0;
 }
 
 button {
@@ -144,8 +143,8 @@ p {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 .modal__content,
 #history {
